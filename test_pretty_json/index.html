@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script src="jquery-1.10.2.min.js"></script>
+        <script src="jquery.json-editor.min.js"></script>
+    </head>
+    <body>
+        <textarea id="json-input" autocomplete="off" style="display: none;">
+            { "col_inst_id": "0000000001", "name": "KISA RDB collector", "collector_id": "default-rdb-collector", "node_id": "prep2_mainapp", "state": "stopped", "output_streaming": [], "log_types": [ "esm" ], "date_time_field": "_time", "log_type_field": "_logtype", "date_time_format": "yyyy-MM-dd HH:mm:ss", "configuration": { "db_type": "oracle", "db_name": "ESM", "db_table": "admin.view_is_cep_set", "db_url": "jdbc:oracle:thin:@218.49.112.120:1521:ESM", "db_user": "ai", "db_pwd": "alsrnr12#$", "collect_period": "1", "db_order_column": "etime", "date_range_first_collect_data": "30", "starting_datetime": "20200214155035" }, "push_after_last_modification_time": 1, "log_types_headers_from_bundle": true }
+        </textarea>
+        <pre id="json-display"></pre>
+    </body>
+    <script>
+        // get JSON
+        function getJson() {
+            try {
+                return JSON.parse($('#json-input').val());
+            }catch (ex) {
+                alert('Wrong JSON Format: ' + ex);
+            }
+        }
+        // initialize
+        new JsonEditor('#json-display', getJson());
+    </script>
+</html>

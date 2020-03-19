@@ -15,34 +15,54 @@
  # limitations under the License.
  #
  */
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $("#importFileView").click(function() {
-        var scmServer = $("#scmServer").val();
-        var scmFilePath = $("#scmFilePath").val();
-        var scmFileRevision = $("#scmFileRevision").val();
+    $("#importFileView").click(function () {
+        let scmServer = $("#scmServer").val();
+        let scmFilePath = $("#scmFilePath").val();
+        let scmFileRevision = $("#scmFileRevision").val();
         $("#importFileView").attr('href', scmServer + scmFileRevision + "@" + scmFilePath);
-
     });
 
     //Class based selector 
-    $(".href-select").click(function() {
-        var propName = $(this).text();
-        var propVal = $(this).attr('itemprop');
+    $(".href-select").click(function () {
+        let propName = $(this).text();
+        let propVal = $(this).attr('itemprop');
         $("#newProperty").attr('readonly', true);
         $("#newProperty").val(propName);
         $("#newValue").val(propVal);
-
+        new JsonEditor('#prettyJsonDisplay', getJson(propVal));
         $("#savePropertyBtn").hide();
         $("#updatePropertyBtn").show();
     });
 
     //Id based selector
-    $("#addPropertyBtn").click(function() {
+    $("#addPropertyBtn").click(function () {
         $("#newProperty").attr('readonly', false);
         $("#updatePropertyBtn").hide();
         $("#savePropertyBtn").show();
     });
 
+    $('#updatePropertyBtn, #savePropertyBtn').click(function () {
+        let jsonVal = $('#prettyJsonDisplay').text();
+        $("#newValue").val(jsonVal);
+        console.log("update or save button is just clicked. Data" + jsonVal);
 
-}); 
+        return true;
+    })
+
+});
+
+// get JSON
+function getJson(jsonVal) {
+    try {
+        if (jsonVal) {
+            return JSON.parse(jsonVal);
+        } else {
+            return jsonVal;
+        }
+    } catch (ex) {
+        console.log('Wrong JSON Format: ' + ex);
+        return jsonVal;
+    }
+}

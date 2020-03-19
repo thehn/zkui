@@ -22,12 +22,12 @@ body {
     /* The html and body elements cannot have any padding or margin. */
 }
 
-.scroll-pane{
-    height: 620px; 
+.scroll-pane {
+    height: 620px;
     max-height: 620px;
 }
 
-.wrap-table{
+.wrap-table {
     table-layout: fixed;
     word-wrap: break-word;
 }
@@ -48,8 +48,14 @@ body {
     background-color: #f5f5f5;
 }
 
-table { table-layout: fixed; }
-table td { word-wrap: break-word; }
+table {
+    table-layout: fixed;
+}
+
+table td {
+    word-wrap: break-word;
+}
+
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
@@ -57,6 +63,7 @@ table td { word-wrap: break-word; }
 #wrap > .container {
     padding: 60px 15px 0;
 }
+
 .container .credit {
     margin: 20px 0;
 }
@@ -68,4 +75,12 @@ table td { word-wrap: break-word; }
 
 code {
     font-size: 80%;
+}
+
+#prettyJsonDisplay {
+    white-space: normal !important;
+}
+
+#addPropertyModal .modal-content {
+    min-width: 899px;
 }

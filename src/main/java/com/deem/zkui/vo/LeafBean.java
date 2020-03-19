@@ -18,9 +18,7 @@ package com.deem.zkui.vo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class LeafBean implements Comparable<LeafBean> {
 
@@ -63,7 +61,6 @@ public class LeafBean implements Comparable<LeafBean> {
 
 	public String getStrValue() {
 		return new String(this.value, StandardCharsets.UTF_8);
-		return null;
 	}
 
 	public void setStrValue(String strValue) {
