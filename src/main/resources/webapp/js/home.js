@@ -16,6 +16,7 @@
  #
  */
 $(document).ready(function () {
+    let isJsonFormat = false;
 
     $("#importFileView").click(function () {
         let scmServer = $("#scmServer").val();
@@ -31,7 +32,6 @@ $(document).ready(function () {
         $("#newProperty").attr('readonly', true);
         $("#newProperty").val(propName);
         $("#newValue").val(propVal);
-        new JsonEditor('#prettyJsonDisplay', getJson(propVal));
         $("#savePropertyBtn").hide();
         $("#updatePropertyBtn").show();
     });
@@ -44,25 +44,48 @@ $(document).ready(function () {
     });
 
     $('#updatePropertyBtn, #savePropertyBtn').click(function () {
-        let jsonVal = $('#prettyJsonDisplay').text();
-        $("#newValue").val(jsonVal);
-        console.log("update or save button is just clicked. Data" + jsonVal);
-
+        if (isJsonFormat) {
+            let jsonVal = $('#prettyJsonDisplay').text();
+            if (jsonVal) {
+                try {
+                    JSON.parse(jsonVal);
+                } catch (e) {
+                    alert("Wrong JSON format, please check input again.")
+                    return false;
+                }
+            }
+            $("#newValue").val(jsonVal);
+            console.log("update or save button is just clicked. Data" + jsonVal);
+        }
         return true;
     })
 
+    $('#btnFormatJson').click(function () {
+        console.log("btnFormatJson was clicked");
+        if (makeJsonPretty()) {
+            isJsonFormat = true;
+            $('#prettyJsonDisplay').show();
+            $('#newValue').hide();
+        }
+    })
+
+    $('#addPropertyModal').on('hide.bs.modal', function (e) {
+        console.log("addPropertyModal was just closed");
+        $('#prettyJsonDisplay').hide();
+        $('#newValue').show();
+        isJsonFormat = false;
+    })
 });
 
 // get JSON
-function getJson(jsonVal) {
+function makeJsonPretty() {
     try {
-        if (jsonVal) {
-            return JSON.parse(jsonVal);
-        } else {
-            return jsonVal;
-        }
+        let jsonVal = JSON.parse($("#newValue").val())
+        new JsonEditor('#prettyJsonDisplay', jsonVal);
+        return true;
     } catch (ex) {
         console.log('Wrong JSON Format: ' + ex);
-        return jsonVal;
+        alert('Wrong JSON Format: ' + ex)
+        return false;
     }
 }

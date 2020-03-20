@@ -19,7 +19,7 @@
 <@main.page>
 
 <div class="container">
-    <form method="post" action="/home">
+    <form method="post"            ="/home">
         <!--Bread crumb-->
         <div class="row-fluid">
             <div class="col-md-12">
@@ -121,7 +121,7 @@
                                 <h4 class="modal-title" id="myModalLabel">Search</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="input-group input-group-lg">
+                                <div class="input-group input-group-md">
                                     <span class="input-group-addon">Search</span>
                                     <input type="text" id="search"  name="searchStr" class="form-control" >
                                 </div>
@@ -143,7 +143,7 @@
                                 <h4 class="modal-title" id="myModalLabel">Add Node</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="input-group input-group-lg">
+                                <div class="input-group input-group-md">
                                     <span class="input-group-addon">Name</span>
                                     <input type="text" name="newNode" class="form-control" placeholder="name">
                                 </div>
@@ -166,16 +166,17 @@
                                 <h4 class="modal-title" id="myModalLabel">Add Property</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="input-group input-group-lg">
+                                <button type="button" class="btn btn-success pull-right" id="btnFormatJson">Pretty JSON Format</button>
+                                <div class="input-group input-group-md">
                                     <span class="input-group-addon">Name</span>
                                     <input type="text" id="newProperty"  name="newProperty" class="form-control" placeholder="name">
                                 </div>
                                 <br/>
-                                <div class="input-group input-group-lg">
+                                <div class="input-group input-group-md">
                                     <span class="input-group-addon">Value</span>
-<!--                                    <textarea id="newValue" name="newValue" class="form-control" placeholder="value" style="resize:vertical;" ></textarea>-->
-                                    <textarea id="newValue" name="newValue" class="form-control" style="display: none" ></textarea>
-                                    <pre id="prettyJsonDisplay" ></pre>
+                                    <textarea id="newValue" name="newValue" class="form-control" placeholder="value" style="resize:vertical;" ></textarea>
+<!--                                    <textarea id="newValue" name="newValue" class="form-control" style="display: none" ></textarea>-->
+                                    <pre id="prettyJsonDisplay" style="display: none"></pre>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -225,7 +226,7 @@
                             <div class="modal-body" >
 
                                 <div class="form-group">
-                                    <div class="input-group input-group-lg">
+                                    <div class="input-group input-group-md">
                                         <span class="input-group-addon">Upload File</span>
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                             <span class="btn btn-default btn-file">
@@ -240,13 +241,13 @@
                                     <h4 class="text-center text-primary">OR</h4>
                                     <br/>
 
-                                    <div class="input-group input-group-lg">
+                                    <div class="input-group input-group-md">
                                         <span class="input-group-addon">File Path</span>
                                         <input type="hidden" id="scmServer" name="scmServer" value="${scmRepo}"/>
                                         <input type="text" id="scmFilePath"  name="scmFilePath" class="form-control" placeholder="${scmRepoPath}">
                                     </div>
                                     <br/>
-                                    <div class="input-group input-group-lg">
+                                    <div class="input-group input-group-md">
                                         <span class="input-group-addon">Revision</span>
                                         <input type="text" id="scmFileRevision"  name="scmFileRevision" class="form-control" placeholder="head">
                                     </div>

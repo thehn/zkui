@@ -79,8 +79,18 @@ code {
 
 #prettyJsonDisplay {
     white-space: normal !important;
+    margin-bottom: 1px !important;
 }
 
 #addPropertyModal .modal-content {
-    min-width: 899px;
+    min-width: 899px !important;
+    font-size: 12px !important;
+}
+
+#btnFormatJson {
+    margin-left: 10px !important;
+}
+
+#newValue {
+    min-height: 500px !important;
 }
