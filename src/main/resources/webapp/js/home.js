@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     $('#btnFormatJson').click(function () {
         console.log("btnFormatJson was clicked");
-        if (makeJsonPretty()) {
+        if (makeJsonPretty(isJsonFormat)) {
             isJsonFormat = true;
             $('#prettyJsonDisplay').show();
             $('#newValue').hide();
@@ -78,10 +78,16 @@ $(document).ready(function () {
 });
 
 // get JSON
-function makeJsonPretty() {
+function makeJsonPretty(isJsonFormat) {
     try {
-        let jsonVal = JSON.parse($("#newValue").val())
-        new JsonEditor('#prettyJsonDisplay', jsonVal);
+        if (isJsonFormat) {
+            // already opened
+            let jsonVal = JSON.parse($("#prettyJsonDisplay").text())
+            new JsonEditor('#prettyJsonDisplay', jsonVal);
+        } else {
+            let jsonVal = JSON.parse($("#newValue").val())
+            new JsonEditor('#prettyJsonDisplay', jsonVal);
+        }
         return true;
     } catch (ex) {
         console.log('Wrong JSON Format: ' + ex);
